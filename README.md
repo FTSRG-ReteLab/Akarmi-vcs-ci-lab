@@ -41,6 +41,11 @@ The figure below illustrates this behavior using an example.
 
 ![speed example](doc/speed_example.png)
 
+# labor
+# proboe
+# 123
+
+
 1. First, the reference speed and the joystick is both at zero.
 1. At the first time unit, the joystick is set to a positive value, thus the reference speed is also incremented.
 1. As the joystick remains at a positive value, the reference speed is incremented again.
