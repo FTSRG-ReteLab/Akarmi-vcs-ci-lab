@@ -42,8 +42,8 @@ The figure below illustrates this behavior using an example.
 ![speed example](doc/speed_example.png)
 
 # labor
-# proboe
-# 123
+## proboe
+### 123
 
 
 1. First, the reference speed and the joystick is both at zero.
