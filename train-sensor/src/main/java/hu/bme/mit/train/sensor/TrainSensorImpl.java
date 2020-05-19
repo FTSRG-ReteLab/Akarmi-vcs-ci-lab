@@ -7,13 +7,11 @@ import hu.bme.mit.train.interfaces.TrainUser;
 public class TrainSensorImpl implements TrainSensor {
 
 	private TrainController controller;
-	private TrainUser user;
 	private int speedLimit = 5;
 	private boolean alarmState = false;
 
-	public TrainSensorImpl(TrainController controller, TrainUser user) {
+	public TrainSensorImpl(TrainController controller) {
 		this.controller = controller;
-		this.user = user;
 	}
 
 	@Override

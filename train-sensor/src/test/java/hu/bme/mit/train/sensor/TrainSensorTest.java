@@ -13,18 +13,16 @@ import static org.junit.Assert.*;
 public class TrainSensorTest {
 
     TrainController trainControllerMock;
-    TrainUser trainUserMock;
 
     @Before
     public void before() {
         trainControllerMock = mock(TrainController.class, "");
-        trainUserMock = mock(TrainUserImpl.class, "");
         when(trainControllerMock.getReferenceSpeed()).thenReturn(10);
     }
 
     @Test
     public void lowerAbsoluteMarginTest() {
-        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock, trainUserMock);
+        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock);
         sensor.overrideSpeedLimit(-1);
         verify(trainControllerMock).setSpeedLimit(-1);
         assertTrue(sensor.getAlarmState() == true);
@@ -32,7 +30,7 @@ public class TrainSensorTest {
 
     @Test
     public void higherAbsoluteMarginTest() {
-        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock, trainUserMock);
+        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock);
         sensor.overrideSpeedLimit(501);
         verify(trainControllerMock).setSpeedLimit(501);
         assertTrue(sensor.getAlarmState() == true);
@@ -40,7 +38,7 @@ public class TrainSensorTest {
 
     @Test
     public void relativeMarginTest() {
-        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock, trainUserMock);
+        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock);
         when(trainControllerMock.getReferenceSpeed()).thenReturn(150);
         sensor.overrideSpeedLimit(50);
         verify(trainControllerMock).setSpeedLimit(50);
@@ -49,7 +47,7 @@ public class TrainSensorTest {
 
     @Test
     public void noAlarmTest() {
-        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock, trainUserMock);
+        TrainSensorImpl sensor = new TrainSensorImpl(trainControllerMock);
         sensor.overrideSpeedLimit(6);
         verify(trainControllerMock).setSpeedLimit(6);
         assertTrue(sensor.getAlarmState() == false);
