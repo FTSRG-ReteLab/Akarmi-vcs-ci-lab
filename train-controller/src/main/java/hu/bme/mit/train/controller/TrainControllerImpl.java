@@ -8,16 +8,24 @@ public class TrainControllerImpl implements TrainController {
 	private int step = 0;
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
+	private Thread thread;
 
 	public TrainControllerImpl() {
-		Timer time = new Timer();
-        time.schedule(new TimerTask() {  
+		thread = new Thread() {
+        
 			@Override  
 			public void run() {  
-				TrainControllerImpl.this.followSpeed();
-			};  
-			}, new Date(), 1000);
-	}
+				try {
+					followSpeed();
+					thread.sleep(2000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				thread.run();
+			}
+		};
+		thread.start();
+}
 
 	@Override
 	public void followSpeed() {
